@@ -1,3 +1,6 @@
+const fs = require('fs').promises;
+const path = require('path');
+
 function determineFieldTypes(records) {
     const fieldTypes = {};
     records.forEach(record => {
@@ -28,4 +31,10 @@ function generateJSDocComments(interfaceName, fieldTypes) {
     return `/**\n * @typedef {Object} ${interfaceName}\n${fields}\n */\n\n`;
 }
 
-module.exports = { determineFieldTypes, generateJSDocComments };
+async function loadJsonFile(jsonDir, jsonFilename) {
+    const jsonFilePath = path.join(jsonDir, jsonFilename);
+    const data = await fs.readFile(jsonFilePath, 'utf8');
+    return JSON.parse(data);
+}
+
+module.exports = { determineFieldTypes, generateJSDocComments, loadJsonFile };

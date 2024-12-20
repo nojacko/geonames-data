@@ -1,15 +1,13 @@
 const fs = require('fs').promises;
 const path = require('path');
 const { goenamesFiles, jsonDir, dataDir } = require('./vars');
-const { determineFieldTypes, generateJSDocComments } = require('./utils');
+const { determineFieldTypes, generateJSDocComments, loadJsonFile } = require('./utils');
 
 const esmDir = path.join(dataDir, 'esm');
 
 async function generateESModule(file) {
     try {
-        const jsonFilePath = path.join(jsonDir, file.jsonFilename);
-        const data = await fs.readFile(jsonFilePath, 'utf8');
-        const records = JSON.parse(data);
+        const records = await loadJsonFile(jsonDir, file.jsonFilename);
 
         // Determine the type of each field
         const fieldTypes = determineFieldTypes(records);
