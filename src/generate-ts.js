@@ -24,10 +24,11 @@ async function generateTypeScript(file) {
         const dataExport = `export const ${file.dataName}: ${file.interfaceName}[] = ${JSON.stringify(records, null, 2)};\n\n`;
 
         const output = `${typeDefinition}${dataExport}`;
-        const outputPath = path.join(tsDir, file.tsFilename);
+        const outputFile = `${file.filename}.ts`;
+        const outputPath = path.join(tsDir, outputFile);
 
         await fs.writeFile(outputPath, output, 'utf8');
-        console.log(`🟢 ${file.tsFilename}`);
+        console.log(`🟢 ${outputFile}`);
     } catch (error) {
         console.error(`🛑 Error processing ${file.jsonFilename}:`, error);
     }

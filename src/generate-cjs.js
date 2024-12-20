@@ -19,10 +19,11 @@ async function generateCommonJS(file) {
         const dataExport = `/** @type {${file.interfaceName}[]} */\nconst ${file.dataName} = ${JSON.stringify(records, null, 2)};\n\nmodule.exports = { ${file.dataName} };\n`;
 
         const output = `${typeDefinition}${dataExport}`;
-        const outputPath = path.join(cjsDir, file.jsFilename);
+        const outputFile = `${file.filename}.js`;
+        const outputPath = path.join(cjsDir, outputFile);
 
         await fs.writeFile(outputPath, output, 'utf8');
-        console.log(`🟢 ${file.jsFilename}`);
+        console.log(`🟢 ${outputFile}`);
     } catch (error) {
         console.error(`🛑 Error processing ${file.jsonFilename}:`, error);
     }

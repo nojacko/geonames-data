@@ -19,10 +19,11 @@ async function generateESModule(file) {
         const dataExport = `/** @type {${file.interfaceName}[]} */\nexport const ${file.dataName} = ${JSON.stringify(records, null, 2)};\n\n`;
 
         const output = `${typeDefinition}${dataExport}`;
-        const outputPath = path.join(esmDir, file.tsFilename.replace('.ts', '.mjs'));
+        const outputFile = `${file.filename}.mjs`;
+        const outputPath = path.join(esmDir, outputFile);
 
         await fs.writeFile(outputPath, output, 'utf8');
-        console.log(`🟢 ${file.tsFilename.replace('.ts', '.mjs')}`);
+        console.log(`🟢 ${outputFile}`);
     } catch (error) {
         console.error(`🛑 Error processing ${file.jsonFilename}:`, error);
     }

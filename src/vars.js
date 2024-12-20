@@ -4,8 +4,7 @@ const goenamesFiles = [
     {
         src: "countryInfo.txt",
         jsonFilename: "country-info.json",
-        tsFilename: "country-info.ts",
-        jsFilename: "country-info.js",
+        filename: "country-info",
         interfaceName: "GeonamesCountryInfo",
         dataName: "geonamesCountryInfoData",
         headers: [
@@ -33,8 +32,7 @@ const goenamesFiles = [
     {
         src: "timeZones.txt",
         jsonFilename: "time-zones.json",
-        tsFilename: "time-zones.ts",
-        jsFilename: "time-zones.js",
+        filename: "time-zones",
         interfaceName: "GeonamesTimeZone",
         dataName: "geonamesTimeZones",
         headers: [
@@ -48,8 +46,7 @@ const goenamesFiles = [
     {
         src: "admin1CodesASCII.txt",
         jsonFilename: "admin-1-codes.json",
-        tsFilename: "admin-1-codes.ts",
-        jsFilename: "admin-1-codes.js",
+        filename: "admin-1-codes",
         interfaceName: "GeonamesAdmin1",
         dataName: "geonamesAdmin1Data",
         headers: [
@@ -62,8 +59,7 @@ const goenamesFiles = [
     {
         src: "admin2Codes.txt",
         jsonFilename: "admin-2-codes.json",
-        tsFilename: "admin-2-codes.ts",
-        jsFilename: "admin-2-codes.js",
+        filename: "admin-2-codes",
         interfaceName: "GeonamesAdmin2",
         dataName: "geonamesAdmin2Data",
         headers: [
@@ -76,8 +72,7 @@ const goenamesFiles = [
     {
         src: null, // Hard coded in process.js
         jsonFilename: "continent-codes.json",
-        tsFilename: "continent-codes.ts",
-        jsFilename: "continent-codes.js",
+        filename: "continent-codes",
         headers: [],
         interfaceName: "GeonamesContinent",
         dataName: "geonamesContinents"
