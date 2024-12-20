@@ -20,8 +20,10 @@ async function downloadFile(file) {
         await pipeline(response, destStream);
         console.log(`🟢 Downloaded to ${originalDirRel}/${file.src}`);
     } catch (err) {
-        await fs.promises.unlink(dest);
-        console.error(`🛑 Failed: ${err.message}`);
+        if (fs.existsSync(dest)) {
+            await fs.promises.unlink(dest);
+        }
+        console.error(`🛑 Failed to download ${url}: ${err.message}`);
     }
 
     console.log();
