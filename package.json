@@ -1,6 +1,6 @@
 {
   "name": "geonames-data",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Scripts to download and parse geonames.org data",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
