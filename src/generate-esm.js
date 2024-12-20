@@ -1,0 +1,37 @@
+const fs = require('fs').promises;
+const path = require('path');
+const { goenamesFiles, jsonDir, dataDir } = require('./vars');
+const { determineFieldTypes, generateJSDocComments } = require('./utils');
+
+const esmDir = path.join(dataDir, 'esm');
+
+async function generateESModule(file) {
+    try {
+        const jsonFilePath = path.join(jsonDir, file.jsonFilename);
+        const data = await fs.readFile(jsonFilePath, 'utf8');
+        const records = JSON.parse(data);
+
+        // Determine the type of each field
+        const fieldTypes = determineFieldTypes(records);
+
+        // Generate ES module code with JSDoc comments
+        const typeDefinition = generateJSDocComments(file.interfaceName, fieldTypes);
+        const dataExport = `/** @type {${file.interfaceName}[]} */\nexport const ${file.dataName} = ${JSON.stringify(records, null, 2)};\n\n`;
+
+        const output = `${typeDefinition}${dataExport}`;
+        const outputPath = path.join(esmDir, file.tsFilename.replace('.ts', '.mjs'));
+
+        await fs.writeFile(outputPath, output, 'utf8');
+        console.log(`🟢 ${file.tsFilename.replace('.ts', '.mjs')}`);
+    } catch (error) {
+        console.error(`🛑 Error processing ${file.jsonFilename}:`, error);
+    }
+}
+
+(async () => {
+    await fs.mkdir(esmDir, { recursive: true });
+
+    for (const file of goenamesFiles) {
+        await generateESModule(file);
+    }
+})();

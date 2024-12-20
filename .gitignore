@@ -1,0 +1,5 @@
+data/
+
+# NPM
+node_modules/
+.npm

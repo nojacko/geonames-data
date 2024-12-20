@@ -1,0 +1,24 @@
+{
+  "name": "geonames-data",
+  "version": "0.0.1",
+  "description": "Scripts to download and parse geonames.org data",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "download": "node src/download.js",
+    "generate-all": "npm run generate-json; npm run generate-ts; npm run generate-cjs; npm run generate-esm",
+    "generate-json": "node src/generate-json.js",
+    "generate-ts": "node src/generate-ts.js",
+    "generate-cjs": "node src/generate-cjs.js",
+    "generate-esm": "node src/generate-esm.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/nojacko/geonames-data.git"
+  },
+  "author": "James Jackson",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nojacko/geonames-data/issues"
+  },
+  "homepage": "https://github.com/nojacko/geonames-data#readme"
+}
