@@ -10,6 +10,7 @@
     "generate-ts": "node src/generate-ts.js",
     "generate-cjs": "node src/generate-cjs.js",
     "generate-esm": "node src/generate-esm.js",
+    "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },
   "repository": {
